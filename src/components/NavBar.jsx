@@ -1,10 +1,14 @@
 import React from "react";
 import logo from "../logo.svg";
 import "./NavBar.css";
-import NavButton from "./NavButton";
+import LogInBtn from "./LogInBtn";
+import LogOutBtn from "./LogOutBtn";
+import SignUpBtn from "./SignUpBtn";
 
 export default function NavBar(props) {
-  const { setShowSignUpModal, setShowLogInModal } = props;
+  const { setShowSignUpModal, setShowLogInModal, currentUser } = props;
+
+  const localUser = JSON.parse(localStorage.getItem("authUser"));
 
   return (
     <div
@@ -24,14 +28,20 @@ export default function NavBar(props) {
         </h1>
       </div>
       <div id="navlinks-container">
-        <NavButton
-          backgroundColor="bg-transparent"
-          buttonText="Log In"
-          clickHandler={setShowLogInModal}
-        />
-        <span className="mx-4">
-          <NavButton buttonText="Sign Up" clickHandler={setShowSignUpModal} />
-        </span>
+        {localUser ? (
+          <span className="mr-2">
+            <LogOutBtn />
+          </span>
+        ) : (
+          <div>
+            <span className="mr-2">
+              <LogInBtn setShowLogInModal={setShowLogInModal} />
+            </span>
+            <span className="mr-2">
+              <SignUpBtn setShowSignUpModal={setShowSignUpModal} />
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

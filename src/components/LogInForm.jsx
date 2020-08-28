@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import FormButton from "./FormButton";
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
 export default function LogInForm(props) {
-  const { setShowLogInModal } = props;
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    email,
+    setEmail,
+    username,
+    password,
+    setPassword,
+    setShowLogInModal,
+    currentUser,
+    setCurrentUser,
+  } = props;
 
   const logIn = (e) => {
     e.preventDefault();
-    // console.log("logged in");
-    // setShowLogInModal(false);
-    
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+    setShowLogInModal(false);
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged(setCurrentUser);
+  }, []);
 
   return (
     <div>

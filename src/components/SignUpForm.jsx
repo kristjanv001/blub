@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import FormButton from './FormButton'
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
 export default function SignUpForm(props) {
-  const { setShowSignUpModal } = props;
+  const {email, setEmail, username, setUsername, password, setPassword, setShowSignUpModal } = props;
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
 
   const signUp = (e) => {
     e.preventDefault();
