@@ -1,24 +1,26 @@
 import React from "react";
 
-export default function Post() {
+export default function Post(props) {
+  const { username, imgUrl, caption } = props.post;
+
   return (
     <div
       id="post-container"
-      className="max-w-lg border border-gray-400 bg-gray-300 mb-10 mx-1"
+      className="max-w-lg border border-gray-400 bg-gray-300 mb-10 mx-1 shadow-sm"
     >
       <div id="post-header" className="p-5">
-        <span className="font-bold">username</span>
+        <span className="font-bold">{username}</span>
       </div>
       <div
         id="post-image-container"
         className="border-t border-b border-gray-400"
       >
-        <img src="https://images.unsplash.com/photo-1598550305968-ed684e58ff47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"></img>
+        <img alt="random" src={imgUrl}></img>
       </div>
-      <div id="post-footer" className="p-3">
+      <div id="post-footer" className="p-5">
         <div id="user-caption">
           <p>
-            <span>Wow, this is so dope!</span>
+            <span>{caption}</span>
           </p>
         </div>
         <div id="comments" className="pt-4">
