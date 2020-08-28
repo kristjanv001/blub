@@ -17,17 +17,19 @@ function App() {
       />
 
       <Modal
+        modalHeading="Sign Up"
         showModal={showSignUpModal}
         setShowModal={setShowSignUpModal}
       >
-        <SignUpForm />
+        <SignUpForm setShowSignUpModal={setShowSignUpModal} />
       </Modal>
 
       <Modal
+        modalHeading="Log In"
         showModal={showLogInModal}
         setShowModal={setShowLogInModal}
       >
-        <LogInForm />
+        <LogInForm setShowLogInModal={setShowLogInModal} />
       </Modal>
 
       <Posts />

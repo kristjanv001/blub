@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import FormButton from './FormButton'
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
@@ -52,7 +52,7 @@ export default function SignUpForm(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button type="submit" buttonText="Sign Up" />
+          <FormButton type="submit" buttonText="Sign Up" onClick={signUp} />
         </div>
       </form>
     </div>

@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import FormButton from "./FormButton";
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
 export default function LogInForm(props) {
-  const { setShowModal } = props;
+  const { setShowLogInModal } = props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const logIn = (e) => {
     e.preventDefault();
-
+    // console.log("logged in");
+    // setShowLogInModal(false);
+    
   };
 
   return (
@@ -33,7 +35,7 @@ export default function LogInForm(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button type="submit" buttonText="Log In" />
+          <FormButton type="submit" buttonText="Log In" />
         </div>
       </form>
     </div>
