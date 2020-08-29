@@ -1,7 +1,9 @@
 import React from "react";
+import Comments from "./Comments";
 
 export default function Post(props) {
-  const { username, imgUrl, caption } = props.post;
+  const { username, imageUrl, caption } = props.post;
+  const { postId, currentUser } = props;
 
   return (
     <div
@@ -15,7 +17,7 @@ export default function Post(props) {
         id="post-image-container"
         className="border-t border-b border-gray-400"
       >
-        <img alt="random" src={imgUrl}></img>
+        <img alt="random" src={imageUrl}></img>
       </div>
       <div id="post-footer" className="p-5">
         <div id="user-caption">
@@ -24,14 +26,7 @@ export default function Post(props) {
           </p>
         </div>
         <div id="comments" className="pt-4">
-          <p>
-            <span className="font-bold pr-3 pl-3">john23</span>
-            <span>Nice!</span>
-          </p>
-          <p>
-            <span className="font-bold pr-3 pl-3">nikki99</span>
-            <span>This is lit</span>
-          </p>
+          <Comments postId={postId} currentUser={currentUser} />
         </div>
       </div>
     </div>

@@ -1,18 +1,25 @@
 import React from "react";
-import FormButton from './FormButton'
+import FormBtn from "./FormBtn";
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
 export default function SignUpForm(props) {
-  const {email, setEmail, username, setUsername, password, setPassword, setShowSignUpModal } = props;
-
-
+  const {
+    email,
+    setEmail,
+    username,
+    setUsername,
+    password,
+    setPassword,
+    setShowSignUpModal,
+  } = props;
 
   const signUp = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
+        console.log("username FROM SIGNUPFORM:", username);
         authUser.user.updateProfile({
           displayName: username,
         });
@@ -50,7 +57,7 @@ export default function SignUpForm(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <FormButton type="submit" buttonText="Sign Up" onClick={signUp} />
+          <FormBtn type="submit" buttonText="Sign Up" onClick={signUp} />
         </div>
       </form>
     </div>

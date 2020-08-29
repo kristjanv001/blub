@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import FormButton from "./FormButton";
+import FormBtn from "./FormBtn";
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
@@ -24,8 +24,23 @@ export default function LogInForm(props) {
   };
 
   useEffect(() => {
-    auth.onAuthStateChanged(setCurrentUser);
-  }, []);
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // user has logged in
+        console.log("username FROM LOGINFORM:", username);
+        console.log("authUser FROM LOGINFORM:", authUser);
+        setUser(authUser);
+      } else {
+        // user has logged out
+        setCurrentUser(null);
+      }
+    });
+
+    return () => {
+      // perform cleanup action
+      unsubscribe();
+    };
+  }, [currentUser]);
 
   return (
     <div>
@@ -46,7 +61,7 @@ export default function LogInForm(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <FormButton type="submit" buttonText="Log In" />
+          <FormBtn type="submit" buttonText="Log In" />
         </div>
       </form>
     </div>

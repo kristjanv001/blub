@@ -4,9 +4,16 @@ import "./NavBar.css";
 import LogInBtn from "./LogInBtn";
 import LogOutBtn from "./LogOutBtn";
 import SignUpBtn from "./SignUpBtn";
+import AddPostBtn from "./AddPostBtn";
 
 export default function NavBar(props) {
-  const { setShowSignUpModal, setShowLogInModal, currentUser } = props;
+  const {
+    setShowSignUpModal,
+    setShowLogInModal,
+    setShowAddPostModal,
+    // currentUser,
+    // username,
+  } = props;
 
   const localUser = JSON.parse(localStorage.getItem("authUser"));
 
@@ -29,9 +36,19 @@ export default function NavBar(props) {
       </div>
       <div id="navlinks-container">
         {localUser ? (
-          <span className="mr-2">
-            <LogOutBtn />
-          </span>
+          <div className="flex justify-center items-center">
+             {/* <p>{username ? username : "no username"}</p>
+              <p>
+                {currentUser ? currentUser.displayName : "no currentUser"}
+              </p> */}
+            <span className="mr-2">
+             
+              <AddPostBtn setShowAddPostModal={setShowAddPostModal} />
+            </span>
+            <span className="mr-2">
+              <LogOutBtn />
+            </span>
+          </div>
         ) : (
           <div>
             <span className="mr-2">

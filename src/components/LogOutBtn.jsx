@@ -6,7 +6,7 @@ export default function LogOutBtn() {
     <button
       onClick={() => auth.signOut()}
       style={{ transition: "all .15s ease" }}
-      className="bg-indigo-700 hover:bg-indigo-900 text-gray-200 font-bold py-2 px-4 rounded "
+      className="bg-gray-300 hover:bg-red-400 text-indigo-900 font-bold py-2 px-4 rounded inline-flex items-center "
     >
       Log Out
     </button>

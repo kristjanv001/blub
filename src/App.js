@@ -5,18 +5,23 @@ import Modal from "./components/Modal";
 import SignUpForm from "./components/SignUpForm";
 import { auth } from "./firebase/firebaseConfig";
 import FormInput from "./components/FormInput";
-import FormButton from "./components/FormButton";
+import FormButton from "./components/FormBtn";
+import AddPostForm from "./components/AddPostForm";
 
 function App() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showLogInModal, setShowLogInModal] = useState(false);
+  const [showAddPostModal, setShowAddPostModal] = useState(false);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
+  const [caption, setCaption] = useState("");
+  const [image, setImage] = useState(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    console.log("mounted");
+    // console.log("mounted");
   }, []);
 
   const logIn = (e) => {
@@ -29,6 +34,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      // console.log("authUser FROM APP:", authUser);
       if (authUser) {
         localStorage.setItem("authUser", JSON.stringify(authUser));
         setCurrentUser(authUser);
@@ -39,18 +45,38 @@ function App() {
     });
 
     return () => {
-      // perform cleanup action
+      // cleanup
       unsubscribe();
     };
-  }, [currentUser]);
+  }, [username]);
 
   return (
     <div className="bg-gray-400 min-h-screen">
       <NavBar
         setShowSignUpModal={setShowSignUpModal}
         setShowLogInModal={setShowLogInModal}
+        setShowAddPostModal={setShowAddPostModal}
+        username={username}
         currentUser={currentUser}
       />
+
+      <Modal
+        modalHeading="Add a New Post"
+        showModal={showAddPostModal}
+        setShowModal={setShowAddPostModal}
+      >
+        <AddPostForm
+          caption={caption}
+          setCaption={setCaption}
+          image={image}
+          setImage={setImage}
+          progress={progress}
+          setProgress={setProgress}
+          username={username}
+          currentUser={currentUser}
+          setShowAddPostModal={setShowAddPostModal}
+        />
+      </Modal>
 
       <Modal
         modalHeading="Sign Up"
@@ -97,7 +123,7 @@ function App() {
         </div>
       </Modal>
 
-      <Posts />
+      <Posts currentUser={currentUser} />
     </div>
   );
 }
