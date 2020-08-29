@@ -11,8 +11,8 @@ export default function NavBar(props) {
     setShowSignUpModal,
     setShowLogInModal,
     setShowAddPostModal,
-    currentUser,
-    username,
+    // currentUser,
+    // username,
   } = props;
 
   const localUser = JSON.parse(localStorage.getItem("authUser"));
@@ -37,12 +37,11 @@ export default function NavBar(props) {
       <div id="navlinks-container">
         {localUser ? (
           <div className="flex justify-center items-center">
-             <p>{username ? username : "no username"}</p>
-              <p>
-                {currentUser ? currentUser.displayName : "no currentUser"}
-              </p>
+            {/* for testing */}
+            {/* <p>{username ? username : "no username"}</p>
+            <p>{currentUser ? currentUser.displayName : "no currentUser"}</p> */}
+            {/* for testing */}
             <span className="mr-2">
-             
               <AddPostBtn setShowAddPostModal={setShowAddPostModal} />
             </span>
             <span className="mr-2">

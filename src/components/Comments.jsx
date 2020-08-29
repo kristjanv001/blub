@@ -48,13 +48,16 @@ export default function Comments(props) {
           </p>
         );
       })}
-      <CommentBox
-        type="text"
-        placeholder="Enter a comment"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        onSubmit={postComment}
-      />
+
+      {currentUser && (
+        <CommentBox
+          type="text"
+          placeholder="Enter a comment"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          onSubmit={postComment}
+        />
+      )}
     </div>
   );
 }

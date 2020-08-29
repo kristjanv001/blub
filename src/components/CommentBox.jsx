@@ -12,7 +12,10 @@ export default function CommentBox(props) {
         value={value}
         onChange={onChange}
       />
-      <button className="bg-gray-400 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 items-center">
+      <button
+        disabled={!value}
+        className="bg-gray-400 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 items-center"
+      >
         Post
       </button>
     </form>

@@ -26,7 +26,7 @@ export default function Post(props) {
       >
         <img alt="random" src={imageUrl}></img>
       </div>
-      <div id="post-footer" className="p-5">
+      <div id="post-footer" className="p-5 flex flex-col">
         <div id="user-caption">
           <p>
             <span>{caption}</span>
