@@ -28,7 +28,7 @@ export default function Comments(props) {
         .collection("posts")
         .doc(postId)
         .collection("comments")
-        // .orderBy("timestamp", "desc")
+        .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });

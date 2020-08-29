@@ -10,7 +10,7 @@ export default function Modal(props) {
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
             <div
               id="modal-container"
-              className="bg-gray-300 rounded-t-md md:w-1/3"
+              className="bg-gray-300 rounded-md md:w-1/3"
             >
               <div
                 id="modal-header"
@@ -24,7 +24,7 @@ export default function Modal(props) {
                   <span className="font-semibold text-3xl ">×</span>
                 </button>
               </div>
-              <div id="modal-content" className="p-10 relative leading-relaxed">
+              <div id="modal-content" className="p-6 relative leading-relaxed">
                 {props.children}
               </div>
             </div>

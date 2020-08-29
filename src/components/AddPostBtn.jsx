@@ -6,7 +6,7 @@ export default function AddPostBtn(props) {
     <button
       onClick={() => setShowAddPostModal(true)}
       style={{ transition: "all .15s ease" }}
-      className="bg-green-500 hover:bg-green-700 text-gray-200  py-2 px-4 rounded "
+      className="bg-green-500 hover:bg-green-700 text-gray-200 py-2 px-4 rounded "
     >
       <svg
         className="fill-current camera w-6 h-6"

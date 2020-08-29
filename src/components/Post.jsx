@@ -1,5 +1,6 @@
 import React from "react";
 import Comments from "./Comments";
+import DeletePostBtn from "./DeletePostBtn";
 
 export default function Post(props) {
   const { username, imageUrl, caption } = props.post;
@@ -8,10 +9,16 @@ export default function Post(props) {
   return (
     <div
       id="post-container"
-      className="max-w-lg border border-gray-400 bg-gray-300 mb-10 mx-1 shadow-sm"
+      className="max-w-lg border border-gray-400 bg-gray-300 mb-10 mx-1 shadow-sm rounded-sm"
     >
-      <div id="post-header" className="p-5">
-        <span className="font-bold">{username}</span>
+      <div id="post-header" className="p-5 flex content-center">
+        <span className="font-bold flex-1">{username}</span>
+
+        {currentUser && currentUser.displayName === username && (
+          <span>
+            <DeletePostBtn postId={postId} currentUser={currentUser} />
+          </span>
+        )}
       </div>
       <div
         id="post-image-container"
