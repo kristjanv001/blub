@@ -51,7 +51,7 @@ function App() {
   }, [username]);
 
   return (
-    <div className="bg-gray-400 min-h-screen">
+    <div className="bg-gray-300 min-h-screen">
       <NavBar
         setShowSignUpModal={setShowSignUpModal}
         setShowLogInModal={setShowLogInModal}
