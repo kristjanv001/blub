@@ -13,7 +13,6 @@ export default function Post(props) {
     >
       <div id="post-header" className="p-5 flex content-center">
         <span className="font-bold flex-1 text-indigo-800">{username}</span>
-
         {currentUser && currentUser.displayName === username && (
           <span>
             <DeletePostBtn postId={postId} currentUser={currentUser} />

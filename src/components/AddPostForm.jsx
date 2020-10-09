@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import FormBtn from "./FormBtn";
 import { db, storage } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 import firebase from "../firebase/firebaseConfig";
 
 export default function AddPostForm(props) {
-  const {
-    // username,
-    currentUser,
-    caption,
-    setCaption,
-    image,
-    setImage,
-    setProgress,
-    setShowAddPostModal,
-  } = props;
+  const [caption, setCaption] = useState("");
+  const [image, setImage] = useState(null);
+  const [progress, setProgress] = useState(0);
+
+  const { currentUser, setShowAddPostModal } = props;
 
   const handleChooseFile = (e) => {
     setImage(e.target.files[0]);
@@ -22,13 +17,16 @@ export default function AddPostForm(props) {
 
   const handleUpload = (e) => {
     e.preventDefault();
-    const storageRef = storage.ref(`images/${image.name}`).put(image);
-    storageRef.on(
+
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+    uploadTask.on(
       "state_changed",
       (snapshot) => {
-        setProgress(
-          Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
+        setProgress(progress);
       },
       (error) => {
         console.log(error.message);
@@ -47,9 +45,9 @@ export default function AddPostForm(props) {
               username: currentUser.displayName,
             });
 
-            setProgress(0);
-            setCaption("");
-            setImage(null);
+            // setProgress(0);
+            // setCaption("");
+            // setImage(null);
             setShowAddPostModal(false);
           });
       }
@@ -60,7 +58,9 @@ export default function AddPostForm(props) {
     <div>
       <form onSubmit={handleUpload}>
         <div>
+          <progress className="w-full" value={progress} max="100" />
           <FormInput
+            type="text"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             label="Caption"

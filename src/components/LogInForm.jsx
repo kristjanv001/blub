@@ -1,46 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FormBtn from "./FormBtn";
 import { auth } from "../firebase/firebaseConfig";
 import FormInput from "./FormInput";
 
 export default function LogInForm(props) {
-  const {
-    email,
-    setEmail,
-    username,
-    password,
-    setPassword,
-    setShowLogInModal,
-    currentUser,
-    setCurrentUser,
-  } = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { setShowLogInModal, setCurrentUser } = props;
 
   const logIn = (e) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
+      .then(setShowLogInModal(false))
       .catch((error) => alert(error.message));
-    setShowLogInModal(false);
   };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // user has logged in
-        console.log("username FROM LOGINFORM:", username);
-        console.log("authUser FROM LOGINFORM:", authUser);
-        setUser(authUser);
-      } else {
-        // user has logged out
-        setCurrentUser(null);
+        setCurrentUser(authUser);
       }
     });
 
     return () => {
-      // perform cleanup action
+      // perform cleanup
       unsubscribe();
     };
-  }, [currentUser]);
+  }, [setCurrentUser]);
 
   return (
     <div>

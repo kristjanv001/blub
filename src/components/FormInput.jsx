@@ -1,14 +1,13 @@
 import React from "react";
 
 export default function FormInput(props) {
-
-const  {label, type, placeholder, value, onChange} = props
+  const { label, type, placeholder, value, onChange } = props;
 
   return (
     <div>
       {/* form input */}
       <div>
-        <label className="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+        <label className="text-gray-800 font-bold md:text-right mb-1 md:mb-0 pr-4">
           {label}
         </label>
       </div>
@@ -24,4 +23,3 @@ const  {label, type, placeholder, value, onChange} = props
     </div>
   );
 }
-

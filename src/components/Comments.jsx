@@ -23,16 +23,20 @@ export default function Comments(props) {
   // Get comments from the db
   useEffect(() => {
     let unsubscribe;
-    if (postId) {
-      unsubscribe = db
-        .collection("posts")
-        .doc(postId)
-        .collection("comments")
-        .orderBy("timestamp", "asc")
-        .onSnapshot((snapshot) => {
-          setComments(snapshot.docs.map((doc) => doc.data()));
-        });
-    }
+
+    unsubscribe = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .orderBy("timestamp", "asc")
+      .onSnapshot((snapshot) => {
+        setComments(
+          snapshot.docs.map((doc) => {
+            return doc.data();
+          })
+        );
+      });
+
     return () => {
       unsubscribe();
     };

@@ -21,7 +21,7 @@ export default function NavBar(props) {
       >
         <h1
           id="navbar-logo-text"
-          className="text-indigo-700 text-2xl sm:text-3xl pl-4"
+          className="text-indigo-700 font-bold text-5xl pl-4"
         >
           Blub
         </h1>

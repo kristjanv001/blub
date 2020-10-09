@@ -2,6 +2,7 @@ import React from "react";
 
 export default function AddPostBtn(props) {
   const { setShowAddPostModal } = props;
+
   return (
     <button
       onClick={() => setShowAddPostModal(true)}
